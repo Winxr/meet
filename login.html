@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Amul</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-box">
+            <img src="amullogo.png" alt="Amul Logo" class="login-logo">
+            <h2>Welcome Back</h2>
+            <form id="loginForm" onsubmit="return validateLogin()">
+                <div class="input-group">
+                    <input type="email" id="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" required>
+                    <label for="password">Password</label>
+                </div>
+                <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <button type="submit" class="login-submit">
+                    <span class="btn-text">Login</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <p class="forgot-password"><a href="#">Forgot Password?</a></p>
+            
+        </div>
+    </div>
+
+    <script>
+        function validateLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Basic validation
+            if (email === '') {
+                alert('Please enter your email');
+                return false;
+            }
+            if (password === '') {
+                alert('Please enter your password');
+                return false;
+            }
+
+            // Here you would typically validate with a server
+            // For demo purposes, we'll just redirect
+            localStorage.setItem('isLoggedIn', 'true');
+            window.location.href = 'index.html';
+            return false; // Prevent form submission
+        }
+
+        // Check if user is already logged in
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html> 
